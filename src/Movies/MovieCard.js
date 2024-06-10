@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function MovieCard ({movie, showStars}) {
+export default function MovieCard ({movie}) {
   const { title, director, metascore, stars } = movie
+  const [showStars, setShowStars] = useState(false)
+  const toggleShowStars = () => {
+    setShowStars(!showStars)
+  }
   return (
+    
     <div className="movie-card">
         <h2>{title}</h2>
         <div className="movie-director">
@@ -11,7 +16,7 @@ export default function MovieCard ({movie, showStars}) {
         <div className="movie-metascore">
           Metascore: <strong>{metascore}</strong>
         </div>
-        <h3>Actors</h3>
+        <h3 onClick={toggleShowStars} >Actors</h3>
 
         {showStars && stars && (
           stars.map(star => (
@@ -21,6 +26,8 @@ export default function MovieCard ({movie, showStars}) {
           )
         ))}
       </div>
+      
+    
       
   )
 }
